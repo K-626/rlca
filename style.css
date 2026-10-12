@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Press+Start+2P&display=swap');
+
+:root {
+  --bg: #10161b;
+  --panel: #1a252c;
+  --panel-2: #202f36;
+  --line: #40535b;
+  --cream: #f0e4c4;
+  --muted: #a4b4b8;
+  --gold: #e4bd6c;
+  --red: #db6d67;
+  --green: #76c78a;
+  --blue: #75b9d7;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; color: var(--cream); background:
+    linear-gradient(rgba(11,17,21,.93), rgba(11,17,21,.97)),
+    repeating-linear-gradient(0deg, #24343a 0 2px, #10161b 2px 4px);
+  font-family: "DotGothic16", monospace;
+  image-rendering: pixelated;
+}
+button { font: inherit; cursor: pointer; }
+button:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+.game-shell { max-width: 1240px; margin: 0 auto; padding: 20px; }
+.topbar { display:flex; justify-content:space-between; align-items:center; gap:18px; margin-bottom:18px; }
+h1,h2,h3,p { margin-top:0; }
+h1 { font-size: clamp(1.4rem, 3vw, 2.2rem); margin-bottom:0; letter-spacing:.08em; }
+h2 { font-size:1.1rem; margin-bottom:8px; }
+h3 { font-size:1rem; margin:0; }
+.eyebrow { color:var(--gold); font-family:"Press Start 2P", monospace; font-size:.53rem; line-height:1.8; letter-spacing:.06em; margin:0 0 7px; }
+.top-actions { display:flex; gap:10px; align-items:center; }
+.pill,.tag { border:1px solid #6b6550; color:var(--gold); padding:5px 8px; font-size:.72rem; white-space:nowrap; }
+.small-button { background:transparent; color:var(--cream); border:1px solid var(--line); padding:8px 12px; }
+.panel { background:linear-gradient(135deg,rgba(35,50,57,.97),rgba(23,33,39,.98)); border:2px solid var(--line); box-shadow:5px 5px 0 #080d10; }
+.battlefield { display:grid; grid-template-columns:minmax(220px,1fr) minmax(240px,1.1fr) minmax(220px,1fr); gap:14px; padding:18px; align-items:stretch; }
+.combatant { display:flex; gap:13px; align-items:center; min-width:0; }
+.combatant.enemy { justify-content:flex-end; }
+.combatant-info { flex:1; min-width:0; }
+.name-line { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+.name-line h2 { margin:0 0 12px; }
+.name-line .tag { margin-bottom:10px; font-size:.57rem; }
+.hp-label { display:flex; justify-content:space-between; gap:8px; font-size:.75rem; margin-bottom:6px; color:var(--muted); }
+.hp-label strong { color:var(--cream); }
+.hp-track { height:12px; border:2px solid #080d10; background:#080d10; padding:1px; }
+.hp-fill { height:100%; width:100%; transition:width .2s; }
+.player-fill { background:var(--green); }
+.enemy-fill { background:var(--red); }
+.stat-row { display:flex; justify-content:space-between; gap:8px; margin-top:9px; color:var(--muted); font-size:.72rem; }
+.stat-row b { color:var(--cream); }
+.portrait { width:82px; height:100px; flex-shrink:0; border:2px solid #68746e; position:relative; overflow:hidden; background:#293d42; box-shadow:inset 0 0 0 4px #18252b; }
+.portrait-player { background:#202f4b; }
+.sprite-cloak { position:absolute; left:17px; bottom:4px; width:45px; height:48px; background:#3f527b; clip-path:polygon(25% 0,75% 0,100% 100%,0 100%); }
+.sprite-eye { position:absolute; z-index:1; left:28px; top:24px; width:26px; height:9px; background:#e9d7a0; box-shadow:0 0 10px #e9d7a0; }
+.portrait-enemy { background:#304332; display:grid; place-items:center; }
+.tree-icon { color:#92c875; font-size:3.6rem; text-shadow:3px 3px #203522; }
+.battle-center { min-width:0; }
+.battle-scene { height:100%; min-height:190px; background:linear-gradient(#17252d,#24382f 72%,#344531 72%,#263327); border:2px solid #51605b; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; padding:10px; position:relative; overflow:hidden; }
+.battle-scene:before { content:""; position:absolute; left:0; right:0; bottom:0; height:25%; background:repeating-linear-gradient(90deg,#29362b 0 28px,#344531 28px 56px); opacity:.7; }
+.scene-stars { position:absolute; top:12px; color:#9aa8a2; letter-spacing:.8em; font-size:.7rem; }
+.pixel-tree { width:100px; height:110px; position:relative; z-index:1; margin-bottom:5px; filter:drop-shadow(4px 4px 0 rgba(0,0,0,.25)); }
+.tree-crown { position:absolute; background:#527e45; border:4px solid #263f2c; }
+.crown-a { width:75px;height:58px;left:11px;top:4px;clip-path:polygon(20% 0,80% 0,100% 30%,90% 70%,70% 100%,25% 95%,0 60%,5% 25%); }
+.crown-b { width:52px;height:43px;left:25px;top:0;background:#6d984f;clip-path:polygon(20% 0,80% 0,100% 35%,80% 80%,55% 100%,15% 80%,0 40%); }
+.tree-face { position:absolute; z-index:2; top:32px; left:33px; display:flex; gap:12px; }
+.tree-face i { width:7px;height:10px;background:#e6d6a4; display:block; box-shadow:2px 2px #263f2c; }
+.tree-trunk { position:absolute; left:39px; top:55px; width:23px; height:42px; background:#775438; border:4px solid #4b392b; }
+.tree-root { position:absolute; bottom:0; width:35px;height:15px;background:#775438;border-bottom:4px solid #4b392b; }
+.root-a {left:19px;transform:skewY(-20deg)} .root-b {right:14px;transform:skewY(20deg)}
+.enemy-name { z-index:1; font-weight:bold; margin:0 0 4px; }
+.enemy-tag { font-size:.58rem; }
+.intent { z-index:1; font-size:.72rem; color:#ffe1a0; background:#111b20d9; border:1px solid #88764d; padding:5px 8px; text-align:center; max-width:100%; }
+.battle-status { display:flex; gap:10px; align-items:stretch; margin:14px 0 24px; }
+.status-card { display:flex; align-items:center; gap:10px; padding:10px 13px; background:#1a252c; border:1px solid var(--line); min-width:0; flex:1; }
+.status-icon { font-size:1.4rem; color:var(--gold); }
+.status-card small { display:block; color:var(--muted); font-size:.68rem; }
+.status-card strong { display:block; font-size:.88rem; margin-top:3px; }
+.primary-button { border:2px solid #e7ca86; color:#171a18; background:var(--gold); padding:12px 18px; font-weight:bold; box-shadow:3px 3px 0 #070b0d; }
+.primary-button:hover { background:#f2d894; transform:translate(-1px,-1px); }
+.primary-button:disabled { opacity:.45; cursor:not-allowed; transform:none; }
+.section-heading { display:flex; justify-content:space-between; align-items:end; gap:16px; margin-bottom:12px; }
+.section-heading h2 { margin:0; }
+.hint { color:var(--muted); font-size:.72rem; margin:0; }
+.hand { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+.skill-card { min-height:190px; padding:12px; text-align:left; color:#29261f; border:3px solid #9b895e; background:linear-gradient(135deg,#f0e2bd,#c8b68b); box-shadow:4px 4px 0 #080d10; display:flex; flex-direction:column; position:relative; transition:transform .12s, box-shadow .12s; }
+.skill-card:hover:not(:disabled) { transform:translateY(-5px); box-shadow:4px 9px 0 #080d10; }
+.skill-card:disabled { filter:grayscale(.6); opacity:.45; cursor:not-allowed; }
+.card-top { display:flex; justify-content:space-between; align-items:center; gap:8px; }
+.card-symbol { width:35px;height:35px;display:grid;place-items:center;border:2px solid #6b5b3a;background:#dfc994;font-size:1.25rem; }
+.card-type { font-size:.6rem; border:1px solid #81724d; padding:3px 5px; }
+.skill-card h3 { font-size:1rem; margin:14px 0 8px; color:#29261f; }
+.skill-card p { font-size:.76rem; line-height:1.6; margin:0; color:#51452f; }
+.card-foot { margin-top:auto; padding-top:12px; display:flex; justify-content:space-between; font-size:.62rem; color:#655438; }
+.card-number { position:absolute; right:8px; bottom:8px; font-family:"Press Start 2P"; font-size:.45rem; opacity:.55; }
+.lower-grid { display:grid; grid-template-columns:1.15fr 1fr; gap:14px; margin-top:24px; }
+.log-panel,.deck-panel { padding:15px; min-width:0; }
+.panel-heading { display:flex; justify-content:space-between; align-items:center; padding-bottom:11px; border-bottom:1px solid var(--line); }
+.panel-heading .tag { font-size:.55rem; }
+.battle-log { margin:10px 0 0; padding-left:22px; max-height:180px; overflow:auto; color:#c4d0cd; font-size:.74rem; line-height:1.8; }
+.battle-log li::marker { color:var(--gold); }
+.deck-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; margin-top:12px; }
+.deck-item { display:flex; justify-content:space-between; gap:6px; padding:7px 8px; background:#121b20; border:1px solid #35464c; font-size:.72rem; }
+.deck-item span:last-child { color:var(--gold); }
+.tiny-note { color:#87999d; font-size:.65rem; line-height:1.6; margin:12px 0 0; }
+.result-overlay { position:fixed; inset:0; background:#060a0cdd; display:grid; place-items:center; padding:20px; z-index:10; }
+.result-overlay.hidden { display:none; }
+.result-box { width:min(420px,100%); text-align:center; padding:28px; }
+.result-box h2 { font-size:2rem; margin:10px 0; }
+.result-box p:not(.eyebrow) { color:var(--muted); margin-bottom:22px; }
+footer { color:#63757b; font-size:.65rem; text-align:center; padding:25px 0 10px; }
+@media (max-width:850px) {
+  .battlefield { grid-template-columns:1fr 1fr; }
+  .battle-center { grid-column:1 / -1; grid-row:1; }
+  .battle-scene { min-height:210px; }
+  .combatant.enemy { justify-content:flex-start; }
+  .enemy .combatant-info { order:2; }
+  .enemy .portrait { order:1; }
+  .battle-status { flex-wrap:wrap; }
+  .status-card { min-width:28%; }
+  .battle-status .primary-button { flex:1; }
+}
+@media (max-width:560px) {
+  .game-shell { padding:12px; }
+  .topbar { align-items:flex-start; }
+  .top-actions { flex-direction:column; align-items:flex-end; }
+  .battlefield { padding:10px; gap:10px; }
+  .portrait { width:54px; height:72px; }
+  .sprite-cloak { left:10px; width:32px; height:35px; }
+  .sprite-eye { left:17px; top:18px; width:20px; }
+  .combatant { gap:8px; }
+  .name-line h2 { font-size:.9rem; }
+  .name-line .tag { display:none; }
+  .stat-row { flex-direction:column; gap:3px; }
+  .battle-status { gap:6px; }
+  .status-card { padding:8px; min-width:28%; }
+  .status-card strong { font-size:.75rem; }
+  .status-icon { display:none; }
+  .battle-status .primary-button { width:100%; }
+  .section-heading { align-items:flex-start; flex-direction:column; }
+  .hand { gap:7px; }
+  .skill-card { min-height:175px; padding:8px; }
+  .card-symbol { width:27px; height:27px; }
+  .skill-card h3 { font-size:.85rem; margin:10px 0 6px; }
+  .skill-card p { font-size:.68rem; }
+  .lower-grid { grid-template-columns:1fr; }
+}
