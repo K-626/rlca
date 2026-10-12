@@ -9,44 +9,25 @@
 <body>
   <div class="game-shell">
     <header class="topbar">
-      <div>
-        <p class="eyebrow">PIXEL ROGUELIKE / PROTOTYPE 0.1</p>
-        <h1>異形のカードバトル</h1>
-      </div>
-      <div class="top-actions">
-        <span class="pill" id="turn-label">TURN 1</span>
-        <button id="restart-btn" class="small-button">最初から</button>
-      </div>
+      <div><p class="eyebrow">PIXEL ROGUELIKE / PROTOTYPE 0.1</p><h1>異形のカードバトル</h1></div>
+      <div class="top-actions"><span class="pill" id="turn-label">TURN 1</span><button id="restart-btn" class="small-button">最初から</button></div>
     </header>
-
     <main>
       <section class="battlefield panel">
         <div class="combatant player">
-          <div class="portrait portrait-player" aria-label="プレイヤーのドット絵">
-            <span class="sprite-eye"></span><span class="sprite-cloak"></span>
-          </div>
+          <div class="portrait portrait-player" aria-label="プレイヤーのドット絵"><span class="sprite-eye"></span><span class="sprite-cloak"></span></div>
           <div class="combatant-info">
             <div class="name-line"><h2>虚の異形</h2><span class="tag">PLAYER</span></div>
             <div class="hp-label"><span>体力</span><strong id="player-hp-text">100 / 100</strong></div>
             <div class="hp-track"><div id="player-hp-bar" class="hp-fill player-fill"></div></div>
-            <div class="stat-row"><span>マナ <b id="player-mana">0</b></span><span>行動 <b id="player-actions">3</b></span></div>
+            <div class="stat-row"><span>マナ <b id="player-mana">0</b></span></div>
           </div>
         </div>
-
-        <div class="battle-center">
-          <div class="battle-scene">
-            <div class="scene-stars">✦　·　✧　·　✦</div>
-            <div class="pixel-tree" aria-label="トレントのドット絵">
-              <div class="tree-crown crown-a"></div><div class="tree-crown crown-b"></div>
-              <div class="tree-face"><i></i><i></i></div>
-              <div class="tree-trunk"></div>
-              <div class="tree-root root-a"></div><div class="tree-root root-b"></div>
-            </div>
-            <div class="enemy-name">トレント <span class="tag enemy-tag">通常敵</span></div>
-            <div class="intent" id="enemy-intent">次の行動：新緑の握撃</div>
-          </div>
-        </div>
-
+        <div class="battle-center"><div class="battle-scene">
+          <div class="scene-stars">✦　·　✧　·　✦</div>
+          <div class="pixel-tree" aria-label="トレントのドット絵"><div class="tree-crown crown-a"></div><div class="tree-crown crown-b"></div><div class="tree-face"><i></i><i></i></div><div class="tree-trunk"></div><div class="tree-root root-a"></div><div class="tree-root root-b"></div></div>
+          <div class="enemy-name">トレント <span class="tag enemy-tag">通常敵</span></div><div class="intent" id="enemy-intent">次の行動：新緑の握撃</div>
+        </div></div>
         <div class="combatant enemy">
           <div class="combatant-info">
             <div class="name-line"><h2>トレント</h2><span class="tag">ENEMY</span></div>
@@ -57,43 +38,21 @@
           <div class="portrait portrait-enemy" aria-label="トレントのアイコン"><span class="tree-icon">♣</span></div>
         </div>
       </section>
-
       <section class="battle-status">
         <div class="status-card"><span class="status-icon">◈</span><div><small>手札</small><strong id="hand-count">3 / 3</strong></div></div>
-        <div class="status-card"><span class="status-icon">▤</span><div><small>デッキ</small><strong id="deck-count">10 スキル</strong></div></div>
-        <div class="status-card"><span class="status-icon">⚔</span><div><small>今ターンの行動</small><strong id="action-count">3 回</strong></div></div>
+        <div class="status-card"><span class="status-icon">▤</span><div><small>山札</small><strong id="deck-count">7 枚</strong></div></div>
         <button id="end-turn-btn" class="primary-button">ターン終了 →</button>
       </section>
-
       <section class="hand-section">
-        <div class="section-heading">
-          <div><p class="eyebrow">CHOOSE YOUR SKILL</p><h2>手札からスキルを選ぶ</h2></div>
-          <p class="hint">スキルは発動後、基本的にデッキへ戻ります。</p>
-        </div>
+        <div class="section-heading"><div><p class="eyebrow">CHOOSE YOUR SKILL</p><h2>手札からスキルを選ぶ</h2></div><p class="hint">通常カードを使うとターン終了。即効カードはターンを継続します。</p></div>
         <div id="hand" class="hand"></div>
       </section>
-
       <section class="lower-grid">
-        <div class="panel log-panel">
-          <div class="panel-heading"><h3>戦闘ログ</h3><span class="tag">BATTLE LOG</span></div>
-          <ol id="battle-log" class="battle-log"></ol>
-        </div>
-        <div class="panel deck-panel">
-          <div class="panel-heading"><h3>初期デッキ</h3><span class="tag">10 SKILLS</span></div>
-          <div id="deck-list" class="deck-list"></div>
-          <p class="tiny-note">虚の異形の初期スキル構成を参考にしています。効果値やターン処理は試作用に簡略化しています。</p>
-        </div>
+        <div class="panel log-panel"><div class="panel-heading"><h3>戦闘ログ</h3><span class="tag">BATTLE LOG</span></div><ol id="battle-log" class="battle-log"></ol></div>
+        <div class="panel deck-panel"><div class="panel-heading"><h3>初期デッキ</h3><span class="tag">10 SKILLS</span></div><div id="deck-list" class="deck-list"></div><p class="tiny-note">虚の異形の初期スキル構成を参考にしています。効果値やターン処理は試作用に簡略化しています。</p></div>
       </section>
     </main>
-
-    <div id="result-overlay" class="result-overlay hidden">
-      <div class="result-box panel">
-        <p class="eyebrow">BATTLE RESULT</p>
-        <h2 id="result-title">勝利！</h2>
-        <p id="result-message">トレントを倒した。</p>
-        <button id="result-restart" class="primary-button">もう一度戦う</button>
-      </div>
-    </div>
+    <div id="result-overlay" class="result-overlay hidden"><div class="result-box panel"><p class="eyebrow">BATTLE RESULT</p><h2 id="result-title">勝利！</h2><p id="result-message">トレントを倒した。</p><button id="result-restart" class="primary-button">もう一度戦う</button></div></div>
     <footer>Prototype 0.1 · HTML / CSS / JavaScript · 参考：ローグライクカードバトル攻略Wiki</footer>
   </div>
   <script src="game.js"></script>
